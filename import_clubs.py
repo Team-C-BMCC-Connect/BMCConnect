@@ -7,7 +7,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings')
 import django
 django.setup()
 
-from clubs.models import Club
+from apps.clubs.models import Club
 
 def import_clubs():
     csv_file = 'clubs.csv'  # Update with the correct CSV file name or path
