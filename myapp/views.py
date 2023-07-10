@@ -1,15 +1,36 @@
 from django.shortcuts import render
-from .forms import MentorMenteeForm
 from django.http import JsonResponse
+from django.shortcuts import render
+from myapp.forms import MentorForm, MenteeForm
 
-def register(request):
+def mentor_registration(request):
     if request.method == 'POST':
-        form = MentorMenteeForm(request.POST)
+        form = MentorForm(request.POST)
         if form.is_valid():
-            form.save()
-            return JsonResponse({'message': 'Registration successful!'})
+            # Process the form data for mentors
+            # ...
+            return JsonResponse({'success': True})
+        else:
+            # Return the form errors in JSON format
+            return JsonResponse({'success': False, 'errors': form.errors})
     else:
-        form = MentorMenteeForm()
-    
-    return render(request, 'registration.html', {'form': form})
+            form = MentorForm()
+    return render(request, 'mentor_registration.html', {'form': form})
 
+def mentee_registration(request):
+    if request.method == 'POST':
+        form = MenteeForm(request.POST)
+        if form.is_valid():
+            # Process the form data for mentees
+            # ...
+            return JsonResponse({'success': True})
+        else:
+            # Return the form errors in JSON format
+            return JsonResponse({'success': False, 'errors': form.errors})
+    else:
+        form = MenteeForm()
+    
+    return render(request, 'mentee_registration.html', {'form': form})
+
+def index(request):
+    return render(request, 'index.html')
