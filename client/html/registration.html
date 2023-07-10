@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>BMCConnect</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="Webflow" name="generator">
+    <link href="{% static 'css/lisandros-stunning-site-01bdb5.webflow.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/webflow.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/lisandros-stunning-site-01bdb5.webflow.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'images/favicon.ico' %}" rel="shortcut icon" type="image/x-icon">
+    <link href="{% static 'images/webclip.png' %}" rel="apple-touch-icon">
+</head>
+<body>
+<div class="team-rectangles">
+    <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar-logo-left w-nav">
+      <div class="navbarcontainer w-container">
+        <div class="navbar-content">
+          <div class="navbar-brand"><img src="{% static 'images/Logo.png' %}" loading="lazy" width="117" height="56" alt="" class="logo"></div>
+          <div class="text">
+            <div class="text text"><span class="bmcconnect-0">BMC</span><span class="bmcconnect-1">C</span><span class="bmcconnect-0">onnect</span></div>
+          </div>
+          <nav role="navigation" class="navbar-menu w-nav-menu">
+            <a href="#" class="navbar-link w-nav-link">
+              <div class="text-2">Clubs</div>
+            </a>
+            <a href="#" class="navbar-link w-nav-link">
+              <div class="text-2">Mentors</div>
+            </a>
+            <a href="#" class="navbar-link w-nav-link">
+              <div class="text-2">search</div>
+            </a>
+            <a href="#" class="navbar-button w-nav-link">
+              <div class="text-3">Profile</div>
+            </a>
+          </nav>
+        </div>
+        <div class="w-nav-button">
+          <div class="w-icon-nav-menu"></div>
+        </div>
+      </div>
+    </div>    
+    <form method="POST" action="{% url 'register' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Register">
+    </form>
+    <form id="registration-form">
+        <!-- Form fields -->
+        <!-- ... -->
+        <input type="submit" value="Register">
+      </form>
+      
+      <div id="result"></div>
+      
+    <div class="footer">
+        <div class="columns-2">
+          <div class="small-columns">
+            <div class="column">
+              <div class="content">
+                <div class="text-5">COMPANY</div>
+                <div class="footer-links">
+                  <div class="link">How it works</div>
+                  <div class="link">additional</div>
+                  <div class="link">additional</div>
+                </div>
+              </div>
+            </div>
+            <div class="column">
+              <div class="content">
+                <div class="text-5">RESOURCES</div>
+                <div class="footer-links">
+                  <div class="link">Blog post name goes here</div>
+                  <div class="link">Blog post name goes here</div>
+                  <div class="link">Blog post name goes here</div>
+                  <div class="link">See all resources</div>
+                </div>
+              </div>
+            </div>
+            <div class="column">
+              <div class="content">
+                <div class="text-5">ABOUT</div>
+                <div class="footer-links">
+                  <div class="link">Terms &amp; Conditions</div>
+                  <div class="link">Privacy Policy</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column-2">
+          <div class="logo-wrapper"><img src="{% static 'images/Logo_1.png' %}" loading="lazy" width="287" height="68" srcset="{% static 'images/Logo_1-p-500.png' %} 500w, {% static 'images/Logo_1.png' %} 574w" sizes="(max-width: 479px) 60vw, 287px" alt="" class="logo-2"></div>
+        </div>
+        <div class="copyright">
+          <div class="text-6">Copyright © 2022 BMCConnect</div>
+        </div>
+      </div>
+    </div>
+    <script src="{% static 'js/script.js' %}"></script>      
+</body>
+</html>
