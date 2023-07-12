@@ -26,4 +26,6 @@ urlpatterns = [
     path('register/mentor/', mentor_registration, name='mentor_registration'),
     path('register/mentee/', mentee_registration, name='mentee_registration'),
     path('clubs', views.clubs_list_view, name='clubs-list'),
+    path('editClub/<int:club_id>/', views.edit_club, name='edit_club'),
+    path('createClub', views.create_club_view, name='create_club'),
 ]
