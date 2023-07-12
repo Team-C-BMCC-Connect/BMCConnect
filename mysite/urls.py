@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from myapp.views import index
-from myapp.views import mentor_registration, mentee_registration
+from myapp.views import mentor_registration, mentee_registration, signin_view, signup_view
 from apps.clubs import views
 
 urlpatterns = [
@@ -26,4 +26,11 @@ urlpatterns = [
     path('register/mentor/', mentor_registration, name='mentor_registration'),
     path('register/mentee/', mentee_registration, name='mentee_registration'),
     path('clubs', views.clubs_list_view, name='clubs-list'),
+    path('editClub/<int:club_id>/', views.edit_club, name='edit_club'),
+    path('createClub', views.create_club_view, name='create_club'),
+    path('clubs/', views.clubs_list_view, name='clubs_list'),
+    path('clubs/join/<int:club_id>/', views.join_club, name='join_club'),
+    path('clubs/delete/<int:club_id>/', views.delete_club, name='delete_club'),
+    path('signin/', signin_view, name='signin'),
+    path('signup/', signup_view, name='signup'),
 ]

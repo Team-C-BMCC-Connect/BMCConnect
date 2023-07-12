@@ -1,5 +1,6 @@
 from django import forms
 from myapp.models import CustomUser
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 class MentorForm(forms.ModelForm):
     class Meta:
@@ -34,10 +35,18 @@ class MentorForm(forms.ModelForm):
         ('yes', 'Yes'),
         ('no', 'No'),
     ])
-from django import forms
-from myapp.models import CustomUser
+
 
 class MenteeForm(forms.ModelForm):
     class Meta:
         model = CustomUser
         fields = ['email', 'first_name', 'last_name', 'emplid', 'major', 'preferred_language']
+
+class LoginForm(AuthenticationForm):
+    username = forms.CharField(label='Username')
+    password = forms.CharField(label='Password', widget=forms.PasswordInput)
+
+class SignupForm(UserCreationForm):
+    class Meta:
+        model = CustomUser
+        fields = ['username', 'email', 'password1', 'password2']
