@@ -91,30 +91,34 @@
   </div>
     <div class="list_club">
         <h2>Look for Clubs</h2>
-
-        {% for club in clubs %}
-        <button class="collapsible">{{ club.name }}</button>
-        <div class="content">
-            <p>Email: {{ club.email }}</p>
-            <p>Meeting Type: {{ club.meeting_type }}</p>
-            <p>Hybrid Link: {{ club.hybrid_link }}</p>
-            <p>Advisor Name: {{ club.advisor_name }}</p>
-            <p>Advisor Email: {{ club.advisor_email }}</p>
-            <p>Club Room: {{ club.club_room }}</p>
-            <p>Category: {{ club.category }}</p>
-            <p>Members: {{ club.members }}</p>
-            <a href="{% url 'edit_club' club.id %}">Edit Club</a>
-            {% if user.is_authenticated %}
-              {% if user.id in club.club_members.all %}
-                  <button disabled>Joined</button>
-              {% else %}
-                  <a href="{% url 'join_club' club.id %}">Join Club</a>
-              {% endif %}
-              {% if user.is_staff %}
-                  <a href="{% url 'delete_club' club.id %}">Delete Club</a>
-              {% endif %}
+        {% for category in categories %}
+          <h2>{{ category }}</h2>
+          {% for club in clubs %}
+            {% if club.category == category %}
+              <button class="collapsible">{{ club.name }}</button>
+              <div class="content">
+                <p>Email: {{ club.email }}</p>
+                <p>Meeting Type: {{ club.meeting_type }}</p>
+                <p>Hybrid Link: {{ club.hybrid_link }}</p>
+                <p>Advisor Name: {{ club.advisor_name }}</p>
+                <p>Advisor Email: {{ club.advisor_email }}</p>
+                <p>Club Room: {{ club.club_room }}</p>
+                <p>Category: {{ club.category }}</p>
+                <p>Members: {{ club.members }}</p>
+                <a href="{% url 'edit_club' club.id %}">Edit Club</a>
+                {% if user.is_authenticated %}
+                  {% if user.id in club.club_members.all %}
+                      <button disabled>Joined</button>
+                  {% else %}
+                      <a href="{% url 'join_club' club.id %}">Join Club</a>
+                  {% endif %}
+                  {% if user.is_staff %}
+                      <a href="{% url 'delete_club' club.id %}">Delete Club</a>
+                  {% endif %}
+                {% endif %}
+              </div>
             {% endif %}
-        </div>
+          {% endfor %}
         {% endfor %} 
         <a href="{% url 'create_club' %}" id="button1">Create Club</a>
         <script>
