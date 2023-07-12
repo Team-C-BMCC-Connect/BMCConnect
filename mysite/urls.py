@@ -19,6 +19,8 @@ from django.urls import path
 from myapp.views import index
 from myapp.views import mentor_registration, mentee_registration, signin_view, signup_view
 from apps.clubs import views
+from apps.clubs.views import profile_view
+from myapp.views import signout_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,4 +35,6 @@ urlpatterns = [
     path('clubs/delete/<int:club_id>/', views.delete_club, name='delete_club'),
     path('signin/', signin_view, name='signin'),
     path('signup/', signup_view, name='signup'),
+    path('profile/', profile_view, name='profile'),
+    path('signout/', signout_view, name='signout'),
 ]

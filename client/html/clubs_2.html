@@ -72,12 +72,12 @@
           <a href="#" class="navbar-link w-nav-link">
             <div class="text-2">search</div>
           </a>
-          <a href="#" class="navbar-button w-nav-link">
+          <a href="{% if user.is_authenticated %}{% url 'profile' %}{% else %}{% url 'signin' %}{% endif %}" class="navbar-button w-nav-link">
             <div class="text-3">
               {% if user.is_authenticated %}
                 Profile
               {% else %}
-                <a class="navbar-button w-nav-link text-3" href="{% url 'signin' %}">Sign In</a>
+                Sign In
               {% endif %}
             </div>
           </a>
@@ -104,7 +104,7 @@
                 <p>Advisor Email: {{ club.advisor_email }}</p>
                 <p>Club Room: {{ club.club_room }}</p>
                 <p>Category: {{ club.category }}</p>
-                <p>Members: {{ club.members }}</p>
+                <p>Members: {{ club.members.count }}</p>
                 <a href="{% url 'edit_club' club.id %}">Edit Club</a>
                 {% if user.is_authenticated %}
                   {% if user.id in club.club_members.all %}

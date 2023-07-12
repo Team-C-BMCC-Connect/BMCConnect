@@ -2,6 +2,11 @@ from django import forms
 from myapp.models import CustomUser
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
+class UserEditForm(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ['first_name', 'last_name', 'email', 'major', 'preferred_language']
+        
 class MentorForm(forms.ModelForm):
     class Meta:
         model = CustomUser

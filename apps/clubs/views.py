@@ -6,6 +6,11 @@ from django.contrib.auth.decorators import login_required
 from myapp.models import CustomUser
 
 @login_required
+def profile_view(request):
+    user = request.user
+    clubs = user.clubs.all()
+    return render(request, 'profile.html', {'user': user, 'clubs': clubs})
+@login_required
 def delete_club(request, club_id):
     club = get_object_or_404(Club, id=club_id)
     club.delete()
@@ -19,8 +24,9 @@ def join_club(request, club_id):
 
 def clubs_list_view(request):
     clubs = Club.objects.all()
+    user_clubs = request.user.clubs.all()
     categories = Club.objects.values_list('category', flat=True).distinct()
-    return render(request, 'clubs_2.html', {'clubs': clubs, 'categories': categories})
+    return render(request, 'clubs_2.html', {'clubs': clubs, 'categories': categories, 'user_clubs': user_clubs})
     
 def create_club_view(request):
     if request.method == 'POST':

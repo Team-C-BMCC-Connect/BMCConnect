@@ -4,19 +4,26 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from .forms import LoginForm, SignupForm
 
+
+def signout_view(request):
+    logout(request)
+    return redirect('index')
+
 def signin_view(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
+        print(form.errors)
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('clubs_list')  # Replace 'clubs_list' with your clubs list URL name
+                return redirect('index')  
     else:
         form = LoginForm()
     return render(request, 'signin.html', {'form': form})
+
 
 def signup_view(request):
     if request.method == 'POST':
