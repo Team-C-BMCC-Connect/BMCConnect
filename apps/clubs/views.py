@@ -19,7 +19,8 @@ def join_club(request, club_id):
 
 def clubs_list_view(request):
     clubs = Club.objects.all()
-    return render(request, 'clubs_2.html', {'clubs': clubs})
+    categories = Club.objects.values_list('category', flat=True).distinct()
+    return render(request, 'clubs_2.html', {'clubs': clubs, 'categories': categories})
     
 def create_club_view(request):
     if request.method == 'POST':
