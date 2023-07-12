@@ -4,7 +4,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-.recommended_club {
+.list_club {
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -28,6 +28,7 @@
 .content {
   padding: 0 18px;
   max-height: 0;
+  width: inherit;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
   background-color: #f1f1f1;
@@ -36,9 +37,9 @@
 
 .content p { 
   text-align: center;
-  width: 50%;
   align-items: center;
   display: flex;
+  margin: 0 auto;
 }
 
 
@@ -88,7 +89,7 @@
       </div>
     </div>
   </div>
-    <div class="recommended_club">
+    <div class="list_club">
         <h2>Look for Clubs</h2>
 
         {% for club in clubs %}
@@ -117,21 +118,22 @@
         {% endfor %} 
         <a href="{% url 'create_club' %}" id="button1">Create Club</a>
         <script>
-        var coll = document.getElementsByClassName("collapsible");
-        var i;
-        
-        for (i = 0; i < coll.length; i++) {
-          coll[i].addEventListener("click", function() {
-            this.classList.toggle("active");
-            var content = this.nextElementSibling;
-            if (content.style.maxHeight){
-              content.style.maxHeight = null;
-            } else {
-              content.style.maxHeight = content.scrollHeight + "px";
-            } 
-          });
-        }
-        </script>   
+  var collapsibleButtons = document.querySelectorAll('.collapsible');
+
+  collapsibleButtons.forEach(function(button) {
+    button.addEventListener('click', function() {
+      this.classList.toggle('active');
+      var content = this.nextElementSibling;
+      if (content.style.maxHeight) {
+        content.style.maxHeight = null;
+        content.style.width = null; // Reset the width
+      } else {
+        content.style.maxHeight = content.scrollHeight + 'px';
+        content.style.width = this.offsetWidth + 'px'; // Set the width equal to the button's width
+      }
+    });
+  });
+</script> 
     </div>
       <div class="footer">
         <div class="columns-2">
