@@ -5,7 +5,7 @@ class Club(models.Model):
     CATEGORY_CHOICES = (
         ('Academic', 'Academic Clubs'),
         ('Creative', 'Creative Clubs'),
-        ('Diversity/ Multicutural', 'Diversity Clubs'),
+        ('Diversity/Multicutural', 'Diversity Clubs'),
         ('Professional', 'Professional Clubs'),
         ('Religious', 'Religious Clubs'),
         ('Social Service', 'Social Service Clubs'),
