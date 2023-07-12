@@ -11,7 +11,7 @@ class Club(models.Model):
     club_room = models.CharField(max_length=100, verbose_name='Club Room')
     active = models.CharField(max_length=100, default='Active')
     category = models.CharField(max_length=100, verbose_name='Category')
-    members = models.IntegerField(default=0, verbose_name='Number of Members')
+    club_members = models.IntegerField(default=0, verbose_name='Number of Members')
 
     def __str__(self):
         return self.name

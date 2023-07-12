@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from myapp.forms import MentorForm, MenteeForm
 
+
 def mentor_registration(request):
     if request.method == 'POST':
         form = MentorForm(request.POST)

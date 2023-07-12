@@ -1,6 +1,21 @@
 from django.shortcuts import render, redirect
 from .models import Club
 from .forms import ClubForm
+from django.shortcuts import get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from myapp.models import CustomUser
+
+@login_required
+def delete_club(request, club_id):
+    club = get_object_or_404(Club, id=club_id)
+    club.delete()
+    return redirect('/clubs')  # Redirect to the clubs list page after deleting the club
+
+def join_club(request, club_id):
+    club = get_object_or_404(Club, id=club_id)
+    user = request.user
+    user.clubs.add(club)
+    return redirect('/clubs')
 
 def clubs_list_view(request):
     clubs = Club.objects.all()
