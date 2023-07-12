@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+   <h1>Sign In</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="navbar-button w-nav-link text-3" type="submit">Sign In</button>
+    </form>
+    <a class="navbar-button w-nav-link text-3" href="{% url 'signup' %}">Sign Up</a>
+{% endblock %}

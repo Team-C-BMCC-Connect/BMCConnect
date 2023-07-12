@@ -69,6 +69,22 @@
   display: flex;
 }
 
+#button1 {
+  display: inline-block;
+  background-color: #000;
+  text-decoration: none;
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
+  font-size: 44px;
+  text-decoration: none;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  padding: 20px 50px;
+  border-bottom: #adb4b5 solid 7px;
+  border-right: #adb4b5 solid 7px;
+}
+
 .navbar-link {
   grid-column-gap: 0px;
   grid-row-gap: 0px;

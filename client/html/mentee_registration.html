@@ -29,8 +29,14 @@
                   <div class="text-2">search</div>
                 </a>
                 <a href="#" class="navbar-button w-nav-link">
-                  <div class="text-3">Profile</div>
-                </a>
+                  <div class="text-3">
+                    {% if user.is_authenticated %}
+                      Profile
+                    {% else %}
+                      <a href="{% url 'signin' %}">Sign In</a>
+                    {% endif %}
+                  </div>
+                </a>                
               </nav>
             </div>
             <div class="w-nav-button">
