@@ -105,9 +105,11 @@
                 <p>Club Room: {{ club.club_room }}</p>
                 <p>Category: {{ club.category }}</p>
                 <p>Members: {{ club.members.count }}</p>
+                {% if user.is_staff %}
                 <a href="{% url 'edit_club' club.id %}">Edit Club</a>
+                {% endif %}
                 {% if user.is_authenticated %}
-                  {% if user.id in club.club_members.all %}
+                  {% if club in user.clubs.all %}
                       <button disabled>Joined</button>
                   {% else %}
                       <a href="{% url 'join_club' club.id %}">Join Club</a>

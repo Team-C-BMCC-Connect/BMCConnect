@@ -20,6 +20,8 @@ def join_club(request, club_id):
     club = get_object_or_404(Club, id=club_id)
     user = request.user
     user.clubs.add(club)
+    print(club)
+    print(user.clubs.all())
     return redirect('/clubs')
 
 def clubs_list_view(request):
