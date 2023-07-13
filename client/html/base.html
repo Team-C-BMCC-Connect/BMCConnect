@@ -11,6 +11,50 @@
   <link href="{% static 'lisandros-stunning-site-01bdb5.webflow.css' %}" rel="stylesheet" type="text/css">
   <link href="{% static 'favicon.ico' %}" rel="shortcut icon" type="image/x-icon">
   <link href="{% static 'webclip.png' %}" rel="apple-touch-icon">
+  <style>
+    .ibm-h1 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #0f62fe;
+  margin-bottom: 20px;
+}
+
+.ibm-row-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.ibm-row-form label {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.ibm-row-form input[type="text"],
+.ibm-row-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #cfd7df;
+  border-radius: 3px;
+}
+
+.ibm-btn-pri {
+  background-color: #0f62fe;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.ibm-btn-pri:hover {
+  background-color: #0043ce;
+}
+.content{
+  align-items: center;
+}
+  </style>
 </head>
 <body>
   <!-- Add your navigation menu code here -->
@@ -22,7 +66,7 @@
               <div class="text text"><span class="bmcconnect-0">BMC</span><span class="bmcconnect-1">C</span><span class="bmcconnect-0">onnect</span></div>
             </div>
             <nav role="navigation" class="navbar-menu w-nav-menu">
-              <a href="#" class="navbar-link w-nav-link">
+              <a href="{% url 'clubs-list' %}" class="navbar-link w-nav-link">
                 <div class="text-2">Clubs</div>
               </a>
               <a href="#" class="navbar-link w-nav-link">

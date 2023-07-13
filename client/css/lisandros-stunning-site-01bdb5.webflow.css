@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+*{
+  font-family: 'Inter', sans-serif;
+}
 .team-rectangles {
   width: 100%;
   grid-column-gap: 23px;
@@ -81,8 +85,16 @@
   margin-right: 20px;
   margin-bottom: 20px;
   padding: 20px 50px;
-  border-bottom: #adb4b5 solid 7px;
-  border-right: #adb4b5 solid 7px;
+  border-bottom: #999e9e solid 7px;
+  border-right: #999e9e solid 7px;
+}
+
+#button1:hover{
+  background-color: #fff;
+  color: #000;
+  padding: 21px 50.5px;
+  border-bottom: #4f5151 solid 6px;
+  border-right: #4f5151 solid 5px;
 }
 
 .navbar-link {

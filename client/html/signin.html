@@ -2,7 +2,7 @@
 
 {% block content %}
    <h1>Sign In</h1>
-    <form method="POST">
+    <form method="POST" class="ibm-row-form">
         {% csrf_token %}
         {{ form.as_p }}
         <button class="navbar-button w-nav-link text-3" type="submit">Sign In</button>
