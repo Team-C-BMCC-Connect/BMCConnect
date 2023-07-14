@@ -63,6 +63,7 @@
   <link href="{% static 'lisandros-stunning-site-01bdb5.webflow.css' %}" rel="stylesheet" type="text/css">
   <link href="{% static 'favicon.ico' %}" rel="shortcut icon" type="image/x-icon">
   <link href="{% static 'webclip.png' %}" rel="apple-touch-icon">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
   <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar-logo-left w-nav">
@@ -99,42 +100,62 @@
       </div>
     </div>
   </div>
-    <div class="list_club">
-        {% for category in categories %}
-          <h2 class="collapsible2">{{ category }}</h2>
-          <div class="content2">
-          {% for club in clubs %}
-            {% if club.category == category %}
-              <button class="collapsible">{{ club.name }}</button>
-              <div class="content">
-                <p>Email: {{ club.email }}</p>
-                <p>Meeting Type: {{ club.meeting_type }}</p>
-                <p>Hybrid Link: {{ club.hybrid_link }}</p>
-                <p>Advisor Name: {{ club.advisor_name }}</p>
-                <p>Advisor Email: {{ club.advisor_email }}</p>
-                <p>Club Room: {{ club.club_room }}</p>
-                <p>Category: {{ club.category }}</p>
-                <p>Members: {{ club.members.count }}</p>
-                {% if user.is_staff %}
-                <a href="{% url 'edit_club' club.id %}">Edit Club</a>
+  <div class="list_club">
+    {% for category in categories %}
+        <h2 class="collapsible2">{{ category }}</h2>
+        <div class="content2">
+            {% for club in clubs %}
+                {% if club.category == category %}
+                    <button class="collapsible">{{ club.name }}</button>
+                    <div class="content">
+                        <p>Email: {{ club.email }}</p>
+                        <p>Meeting Type: {{ club.meeting_type }}</p>
+                        <p>Hybrid Link: {{ club.hybrid_link }}</p>
+                        <p>Advisor Name: {{ club.advisor_name }}</p>
+                        <p>Advisor Email: {{ club.advisor_email }}</p>
+                        <p>Club Room: {{ club.club_room }}</p>
+                        <p>Category: {{ club.category }}</p>
+                        <p>Members: <span id="members-count-{{ club.id }}">{{ club.members.count }}</span></p>
+                        {% if user.is_staff %}
+                            <a href="{% url 'edit_club' club.id %}">Edit Club</a>
+                        {% endif %}
+                        {% if user.is_authenticated %}
+                            {% if club in user.clubs.all %}
+                                <button id="join-button-{{ club.id }}" onclick="joinClub({{ club.id }})">Leave Club</button>
+                            {% elif club not in user.clubs.all %}
+                                <button id="join-button-{{ club.id }}" onclick="joinClub({{ club.id }})">Join Club</button>
+                            {% endif %}
+                            {% if user.is_staff %}
+                                <a href="{% url 'delete_club' club.id %}">Delete Club</a>
+                            {% endif %}
+                        {% endif %}
+                    </div>
                 {% endif %}
-                {% if user.is_authenticated %}
-                  {% if club in user.clubs.all %}
-                      <button disabled>Joined</button>
-                  {% else %}
-                      <a href="{% url 'join_club' club.id %}">Join Club</a>
-                  {% endif %}
-                  {% if user.is_staff %}
-                      <a href="{% url 'delete_club' club.id %}">Delete Club</a>
-                  {% endif %}
-                {% endif %}
-              </div>
-            {% endif %}
-          {% endfor %}
-          </div>
-        {% endfor %} 
+            {% endfor %}
+        </div>
+    {% endfor %} 
         <a href="{% url 'create_club' %}" id="button1">Create Club</a>
         <script>
+           function joinClub(clubId) {
+        $.ajax({
+            url: 'join/' + clubId + '/',
+            type: 'POST',
+            dataType: 'json',
+            headers: {'X-CSRFToken': '{{ csrf_token }}'},
+            success: function (data) {
+                var joinButton = $('#join-button-' + clubId);
+                var membersCountElement = $('#members-count-' + clubId);
+                
+                if (data.is_joined) {
+                    joinButton.text('Leave'); // Update button text
+                } else {
+                    joinButton.text('Join Club'); // Update button text
+                }
+                
+                membersCountElement.text(data.members_count); // Update the members count
+            }
+        });
+    }
   var collapsibleButtons = document.querySelectorAll('.collapsible');
 
   collapsibleButtons.forEach(function(button) {
@@ -160,7 +181,7 @@
         content.style.maxHeight = null;
         content.style.width = null; // Reset the width
       } else {
-        content.style.maxHeight = '4500px';
+        content.style.maxHeight = '4900px';
         content.style.width = this.offsetWidth + 'px'; // Set the width equal to the button's width
       }
     });

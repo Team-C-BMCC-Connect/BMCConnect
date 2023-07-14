@@ -4,6 +4,7 @@ from .forms import ClubForm
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from myapp.models import CustomUser
+from django.http import JsonResponse
 
 @login_required
 def profile_view(request):
@@ -16,13 +17,23 @@ def delete_club(request, club_id):
     club.delete()
     return redirect('/clubs')  # Redirect to the clubs list page after deleting the club
 
+@login_required
 def join_club(request, club_id):
     club = get_object_or_404(Club, id=club_id)
     user = request.user
-    user.clubs.add(club)
-    print(club)
-    print(user.clubs.all())
-    return redirect('/clubs')
+    if club in user.clubs.all():
+        user.clubs.remove(club)
+        joined = False
+    else:
+        user.clubs.add(club)
+        joined = True
+
+    data = {
+        'joined': joined
+    }
+
+    return JsonResponse(data)
+
 
 def clubs_list_view(request):
     clubs = Club.objects.all()
