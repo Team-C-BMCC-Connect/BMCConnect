@@ -10,19 +10,17 @@ def signout_view(request):
     return redirect('index')
 
 def signin_view(request):
-    if request.method == 'POST':
-        form = LoginForm(request.POST)
-        print(form.errors)
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
+        if request.method == 'POST':
+            username = request.POST['username']
+            password = request.POST['password']
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('index')  
-    else:
-        form = LoginForm()
-    return render(request, 'signin.html', {'form': form})
+                return redirect('index')  # Replace 'home' with the name of your home page URL pattern
+            else:
+                return render(request, 'signin.html', {'error': 'Invalid credentials'})
+        else:
+            return render(request, 'signin.html')
 
 
 def signup_view(request):
