@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+*{
+  font-family: 'Inter', sans-serif;
+}
+
+body{
+  margin: 0;
+  font-family: system-ui;
+}
+
+.hero{
+  background-color: antiquewhite;
+  background-image: url("/static/Main_Building.jpg");
+  color:white;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 100%;
+  padding-top: 200px;
+  padding-bottom: 450px;
+  background-repeat: no-repeat;
+  background-size:cover;   
+}
+
+
+.imagecontainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(80%);
+  height: 100%;
+}
+
+.bmcconnect2-0 {
+  color: #ffffff;
+  font-size: 80px;
+  font-weight: 900;
+
+  line-height: 150%;
+}
+
+.bmcconnect2-1 {
+  color: #7dd9ed;
+  font-size: 80px;
+  font-weight: 900;
+
+  line-height: 150%;
+}
+
+.body_rectangle{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: flex;
+
+}
+
+.sub_body_rectangle{
+  width: 49%;
+  background-color: rgba(0, 65, 150, 1) ;
+  border-radius: 20px; 
+}
+
+.sub2_body_rectangle{
+  display: flex;
+  width: 100%;
+
+  height: flex; 
+  justify-content: center;
+  align-items: center;
+}
+
+.body_text1{
+  color: #ebf7ff;
+  font-size: 50px;
+  font-weight: 950;
+  line-height: 130%;
+  font-family: Arial;
+  text-shadow: 7px 6px 4px  #3a577d79;
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.body_text2{
+  color: #ffffff;
+  text-align: center right;
+  font-family: Arial;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 170%;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+.profile-picture {
+  width: 110px;
+  height: 110px; 
+  border-radius: 50%; 
+  object-fit: cover; 
+}
+
+.alldevs{
+  margin-top: -15px;
+  width: 50%;
+  display: flex;
+  font-size: medium;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+}
+
+.alldevs i{
+  font-size: 25px;
+}
+
+.footertext{
+  color: #3d5a80;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 150%;
+  margin-bottom: 10px;
+}
+
+
+
+
+
+

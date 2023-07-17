@@ -65,4 +65,4 @@ def mentee_registration(request):
     return render(request, 'mentee_registration.html', {'form': form})
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'home.html')

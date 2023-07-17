@@ -36,6 +36,8 @@ def join_club(request, club_id):
 
 
 def clubs_list_view(request):
+    if not request.user.is_authenticated:
+        return redirect('/signin')
     clubs = Club.objects.all()
     user_clubs = request.user.clubs.all()
     categories = Club.objects.values_list('category', flat=True).distinct()
