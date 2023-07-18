@@ -22,6 +22,7 @@ from apps.clubs import views
 from apps.clubs.views import profile_view
 from apps.clubs.views import chart_view
 from myapp.views import signout_view
+from myapp.views import mentors_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -39,5 +40,6 @@ urlpatterns = [
     path('profile/', profile_view, name='profile'),
     path('signout/', signout_view, name='signout'),
     path('data/', chart_view, name='charts'),
+    path('mentors/', mentors_view, name='mentors'),
     
 ]
