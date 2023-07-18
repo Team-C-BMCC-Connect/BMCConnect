@@ -20,9 +20,12 @@ from myapp.views import index
 from myapp.views import mentor_registration, mentee_registration, signin_view, signup_view
 from apps.clubs import views
 from apps.clubs.views import profile_view
+from apps.clubs.views import chart_view
 from myapp.views import signout_view
 from apps.clubs.views import chart_view
 from myapp.views import mentors_view
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),

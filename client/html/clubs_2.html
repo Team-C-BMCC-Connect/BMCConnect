@@ -12,7 +12,7 @@
   flex-direction: column;
 }
 .collapsible{
-  background-color: #777;
+  background-color: rgba(0, 65, 150, 1);
   color: white;
   cursor: pointer;
   padding: 18px;
@@ -21,6 +21,7 @@
   text-align: center;
   outline: none;
   font-size: 15px;
+  margin-bottom: 5px;
 }
 .collapsible2{
   background-color: rgba(0, 65, 150, 1);
@@ -153,9 +154,11 @@
             success: function (data) {
                 var joinButton = $('#join-button-' + clubId);
                 var membersCountElement = $('#members-count-' + clubId);
-                
-                if (data.is_joined) {
-                    joinButton.text('Leave'); // Update button text
+                let count=0
+                count++
+
+                if (count>0) {
+                    joinButton.text('Leave Club'); // Update button text
                 } else {
                     joinButton.text('Join Club'); // Update button text
                 }
