@@ -43,7 +43,7 @@
         </div>    
         <div>
             <h1>Mentee Registration</h1>
-            <form id="mentee-registration-form">
+            <form id="MenteeRegistration" method="post" action="{% url 'mentee_registration' %}">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <input type="submit" value="Register">

@@ -3,7 +3,7 @@ from myapp.forms import MentorForm, MenteeForm
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from .forms import LoginForm, SignupForm
-
+from .models import Mentee
 
 def signout_view(request):
     logout(request)
@@ -53,7 +53,15 @@ def mentee_registration(request):
     if request.method == 'POST':
         form = MenteeForm(request.POST)
         if form.is_valid():
-            # Process the form data for mentees
+            mentee = Mentee(
+                email=form.cleaned_data['email'],
+                first_name=form.cleaned_data['first_name'],
+                last_name=form.cleaned_data['last_name'],
+                emplid=form.cleaned_data['emplid'],
+                major=form.cleaned_data['major'],
+                preferred_language=form.cleaned_data['preferred_language']
+            )
+            mentee.save()
             # ...
             return JsonResponse({'success': True})
         else:
@@ -63,6 +71,8 @@ def mentee_registration(request):
         form = MenteeForm()
     
     return render(request, 'mentee_registration.html', {'form': form})
+
+
 
 def index(request):
     return render(request, 'home.html')
