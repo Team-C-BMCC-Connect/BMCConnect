@@ -66,3 +66,6 @@ def mentee_registration(request):
 
 def index(request):
     return render(request, 'home.html')
+
+def mentors_view(request):
+    return render(request, 'mentors.html')

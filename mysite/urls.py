@@ -21,6 +21,7 @@ from myapp.views import mentor_registration, mentee_registration, signin_view, s
 from apps.clubs import views
 from apps.clubs.views import profile_view
 from myapp.views import signout_view
+from myapp.views import mentors_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -37,4 +38,5 @@ urlpatterns = [
     path('signup/', signup_view, name='signup'),
     path('profile/', profile_view, name='profile'),
     path('signout/', signout_view, name='signout'),
+    path('mentors/', mentors_view, name='mentors'),
 ]
