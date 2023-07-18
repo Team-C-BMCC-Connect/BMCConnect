@@ -22,11 +22,8 @@
                 <a href="{% url 'clubs-list' %}" class="navbar-link w-nav-link">
                   <div class="text-2">Clubs</div>
                 </a>
-                <a href="#" class="navbar-link w-nav-link">
+                <a href="{% url 'mentors' %}" class="navbar-link w-nav-link">
                   <div class="text-2">Mentors</div>
-                </a>
-                <a href="#" class="navbar-link w-nav-link">
-                  <div class="text-2">search</div>
                 </a>
                 <a href="{% if user.is_authenticated %}{% url 'profile' %}{% else %}{% url 'signin' %}{% endif %}" class="navbar-button w-nav-link">
                   <div class="text-3">
@@ -46,47 +43,13 @@
         </div>    
         <div>
             <h1>Mentee Registration</h1>
-            <form id="mentee-registration-form">
+            <form id="MenteeRegistration" method="post" action="{% url 'mentee_registration' %}">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <input type="submit" value="Register">
             </form>
         </div>
         <div class="footer">
-          <div class="columns-2">
-            <div class="small-columns">
-              <div class="column">
-                <div class="content">
-                  <div class="text-5">COMPANY</div>
-                  <div class="footer-links">
-                    <div class="link">How it works</div>
-                    <div class="link">additional</div>
-                    <div class="link">additional</div>
-                  </div>
-                </div>
-              </div>
-              <div class="column">
-                <div class="content">
-                  <div class="text-5">RESOURCES</div>
-                  <div class="footer-links">
-                    <div class="link">Blog post name goes here</div>
-                    <div class="link">Blog post name goes here</div>
-                    <div class="link">Blog post name goes here</div>
-                    <div class="link">See all resources</div>
-                  </div>
-                </div>
-              </div>
-              <div class="column">
-                <div class="content">
-                  <div class="text-5">ABOUT</div>
-                  <div class="footer-links">
-                    <div class="link">Terms &amp; Conditions</div>
-                    <div class="link">Privacy Policy</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
           <div class="column-2">
             <div class="logo-wrapper"><img src="{% static 'Logo_1.png' %}" loading="lazy" width="287" height="68" srcset="{% static 'Logo_1-p-500.png' %}" sizes="(max-width: 479px) 60vw, 287px" alt="" class="logo-2"></div>
           </div>
