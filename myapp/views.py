@@ -72,7 +72,20 @@ def mentee_registration(request):
     
     return render(request, 'mentee_registration.html', {'form': form})
 
-
+def mentor_registration(request):
+    if request.method == 'POST':
+        form = MentorForm(request.POST)
+        if form.is_valid():
+            mentor = form.save(commit=False)
+            mentor.save()  
+            return JsonResponse({'success': True})
+        else:
+            # Return the form errors in JSON format
+            return JsonResponse({'success': False, 'errors': form.errors})
+    else:
+        form = MentorForm()
+    
+    return render(request, 'mentor_registration.html', {'form': form})
 
 def index(request):
     return render(request, 'home.html')
