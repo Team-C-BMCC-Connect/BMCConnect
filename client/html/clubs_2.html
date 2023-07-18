@@ -89,6 +89,10 @@
           <a href="{% url 'mentors' %}" class="navbar-link w-nav-link">
             <div class="text-2">Mentors</div>
           </a>
+          <a href="{% url 'charts' %}" class="navbar-link w-nav-link">
+            <div class="text-2">Data</div>
+
+        </a>
           <a href="{% if user.is_authenticated %}{% url 'profile' %}{% else %}{% url 'signin' %}{% endif %}" class="navbar-button w-nav-link">
             <div class="text-3">
               {% if user.is_authenticated %}
