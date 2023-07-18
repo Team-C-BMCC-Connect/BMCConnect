@@ -164,10 +164,10 @@
 
                 if (joinButton.text()=='Join Club') {
                     joinButton.text('Leave Club'); // Update button text
-                    membersCount += 1;
+                    membersCountElement.text(membersCount += 1);
                 } else if(joinButton.text()!='Join Club') {
                     joinButton.text('Join Club'); // Update button text
-                    membersCount -= 1;
+                    membersCountElement.text(membersCount -= 1);
                 }
                 
                 membersCountElement.text(data.members_count); // Update the members count
