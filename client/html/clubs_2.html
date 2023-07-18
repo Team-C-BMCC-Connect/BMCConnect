@@ -147,7 +147,9 @@
             {% endfor %}
         </div>
     {% endfor %} 
+    {% if user.is_staff %}
         <a href="{% url 'create_club' %}" id="button1">Create Club</a>
+    {% endif %}
         <script>
            function joinClub(clubId) {
         $.ajax({
