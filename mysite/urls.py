@@ -21,8 +21,9 @@ from myapp.views import mentor_registration, mentee_registration, signin_view, s
 from apps.clubs import views
 from apps.clubs.views import profile_view
 from myapp.views import signout_view
-from myapp.views import mentors_view
 from apps.clubs.views import chart_view
+from myapp.views import mentors_view
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
