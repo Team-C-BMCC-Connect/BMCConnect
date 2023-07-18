@@ -20,6 +20,7 @@ from myapp.views import index
 from myapp.views import mentor_registration, mentee_registration, signin_view, signup_view
 from apps.clubs import views
 from apps.clubs.views import profile_view
+from apps.clubs.views import chart_view
 from myapp.views import signout_view
 
 urlpatterns = [
@@ -37,4 +38,6 @@ urlpatterns = [
     path('signup/', signup_view, name='signup'),
     path('profile/', profile_view, name='profile'),
     path('signout/', signout_view, name='signout'),
+    path('data/', chart_view, name='charts'),
+    
 ]
