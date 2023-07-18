@@ -158,13 +158,14 @@
             success: function (data) {
                 var joinButton = $('#join-button-' + clubId);
                 var membersCountElement = $('#members-count-' + clubId);
-                let count=0
-                count++
+                var membersCount = parseInt(membersCountElement.text()); 
 
                 if (joinButton.text()=='Join Club') {
                     joinButton.text('Leave Club'); // Update button text
+                    membersCount += 1;
                 } else if(joinButton.text()!='Join Club') {
                     joinButton.text('Join Club'); // Update button text
+                    membersCount -= 1;
                 }
                 
                 membersCountElement.text(data.members_count); // Update the members count
