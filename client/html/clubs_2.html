@@ -157,9 +157,9 @@
                 let count=0
                 count++
 
-                if (count>0) {
+                if (joinButton.text()=='Join Club') {
                     joinButton.text('Leave Club'); // Update button text
-                } else {
+                } else if(joinButton.text()!='Join Club') {
                     joinButton.text('Join Club'); // Update button text
                 }
                 
