@@ -158,15 +158,14 @@ body{
 }
 
 .footer2 {
-  width: 100%;
-  grid-column-gap: 40px;
-  grid-row-gap: 40px;
+  width: 50%;
+  grid-column-gap: 24px;
+  grid-row-gap: 24px;
   background-color: #f5f7fa;
-  flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   padding: 64px 24px 8px;
-  display: flex;
+  display: grid;
 }
 
 
