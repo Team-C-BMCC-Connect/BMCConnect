@@ -1,8 +1,13 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
+<div class="profile-header">
+    <img class="profile-image" src="{% static 'pfp.jpg' %}" alt="profile-picture">
   <h2>{{ user.username }}</h2>
+</div>
   
+  <div class="profile-body">
+    <div class="user-information">
   <h3>User Information</h3>
   <p><strong>Username:</strong> {{ user.username }}</p>
   <p><strong>Email:</strong> {{ user.email }}</p>
@@ -10,7 +15,8 @@
   <p><strong>Last Name:</strong> {{ user.last_name }}</p>
   <p><strong>Major:</strong> {{ user.major }}</p>
   <p><strong>Preferred Language:</strong> {{ user.preferred_language }}</p>
-  
+</div>
+<div class="clubs-section">
   <h3>Clubs</h3>
   {% if clubs %}
     <ul>
@@ -21,17 +27,17 @@
   {% else %}
     <p>No clubs found.</p>
   {% endif %}
-  
+</div>
+<div class="edit-section">
   <h3>Edit Information</h3>
   <form method="POST" class="ibm-row-form">
     {% csrf_token %}
     {{ form.as_p }}
-    <a class="navbar-button w-nav-link text-3" href="{% url 'edit_profile'%}">Edit Profile</a>
   </form>
-  <a href="{% url 'signout' %}" class="navbar-button w-nav-link">
-    <div class="text-3">
+  <a class="navbar-button w-nav-link text-3" href="{% url 'edit_profile'%}">Edit Profile</a>
+  <a href="{% url 'signout' %}" class="navbar-button w-nav-link text-3">
       Log Out
-    </div>
   </a>
-  
+</div>
+</div>
 {% endblock %}
