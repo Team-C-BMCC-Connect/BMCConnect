@@ -61,7 +61,7 @@ def mentee_registration(request):
             )
             mentee.save()
             # ...
-            return JsonResponse({'success': True})
+            return render(request, 'profile.html')
         else:
             # Return the form errors in JSON format
             return JsonResponse({'success': False, 'errors': form.errors})
