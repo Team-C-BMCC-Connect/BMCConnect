@@ -6,93 +6,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>BMCConnect</title>
   <!-- Add your CSS and JavaScript links here -->
-  <link href="{% static 'lisandros-stunning-site-01bdb5.webflow.css' %}" rel="stylesheet" type="text/css">
   <link href="{% static 'webflow.css' %}" rel="stylesheet" type="text/css">
   <link href="{% static 'lisandros-stunning-site-01bdb5.webflow.css' %}" rel="stylesheet" type="text/css">
   <link href="{% static 'favicon.ico' %}" rel="shortcut icon" type="image/x-icon">
   <link href="{% static 'webclip.png' %}" rel="apple-touch-icon">
-  <style>
-    .ibm-h1 {
-  font-size: 24px;
-  font-weight: bold;
-  color: #0f62fe;
-  margin-bottom: 20px;
-}
-
-.ibm-row-form {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.ibm-row-form label {
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.ibm-row-form input[type="text"],
-.ibm-row-form textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #cfd7df;
-  border-radius: 3px;
-}
-
-.ibm-btn-pri {
-  background-color: #0f62fe;
-  color: #ffffff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-}
-
-.ibm-btn-pri:hover {
-  background-color: #0043ce;
-}
-.content{
-  align-items: center;
-}
-  </style>
+  <link href="{% static 'navbar.css' %}" rel="stylesheet" type="text/css">
 </head>
 <body>
-  <!-- Add your navigation menu code here -->
-  <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar-logo-left w-nav">
-    <div class="navbarcontainer w-container">
-        <div class="navbar-content">
-            <div class="navbar-brand"><a href="{% url 'index' %}" class="button1"><img src="{% static 'Logo.png' %}" loading="lazy" width="117" height="56" alt="" class="logo"></a></div>
-            <div class="text">
-              <div class="text text"><span class="bmcconnect-0">BMC</span><span class="bmcconnect-1">C</span><span class="bmcconnect-0">onnect</span></div>
-            </div>
-            <nav role="navigation" class="navbar-menu w-nav-menu">
-              <a href="{% url 'clubs-list' %}" class="navbar-link w-nav-link">
-                <div class="text-2">Clubs</div>
+  <!-- Add your navigation menu code here -->     
+          <header id="navbar">
+            <nav class="navbar-container container">
+              <a href="{% url 'index' %}" class="home-link">
+                <div class="navbar-logo"><img src="{% static 'Logo.png' %}"></div>
+                onnect
               </a>
-              <a href="{% url 'mentors' %}" class="navbar-link w-nav-link">
-                <div class="text-2">Mentors</div>
-              </a>
-              <a href="{% url 'charts' %}" class="navbar-link w-nav-link">
-                <div class="text-2">Data</div>
-
-            </a>
-              <a href="{% if user.is_authenticated %}{% url 'profile' %}{% else %}{% url 'signin' %}{% endif %}" class="navbar-button w-nav-link">
-                <div class="text-3">
-                  {% if user.is_authenticated %}
-                    Profile
-                  {% else %}
-                    Sign In
-                  {% endif %}
-                </div>
-              </a>
-              
+              <button type="button" class="navbar-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navbar-menu">
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <div id="navbar-menu" class="detached">
+                <ul class="navbar-links">
+                  <li class="navbar-item"><a class="navbar-link" href="{% url 'clubs-list' %}">Clubs</a></li>
+                  <li class="navbar-item"><a class="navbar-link" href="{% url 'mentors' %}">Mentors</a></li>
+                  <li class="navbar-item"><a class="navbar-link" href="{% url 'charts' %}">Club Data</a></li>
+                  <li class="navbar-item">
+                    <a class="navbar-link" href="{% if user.is_authenticated %}{% url 'profile' %}{% else %}{% url 'signin' %}{% endif %}">
+                      {% if user.is_authenticated %}
+                        Profile
+                      {% else %}
+                        Sign In
+                      {% endif %}
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </nav>
-          </div>
-          <div class="w-nav-button">
-            <div class="w-icon-nav-menu"></div>
-          </div>
-    </div>
-  </div>
+        </header>
 
   <!-- Content section -->
   <div class="content">
@@ -113,5 +63,6 @@
 
   <!-- Add your JavaScript code here -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="{% static 'scripts.js' %}"></script>
 </body>
 </html>

@@ -24,7 +24,11 @@
 
   display: flex;
 }
+.clubs_header_text{
+  margin-top:20px;
+  font-size: xx-large;
 
+}
 .navbar-logo-left {
   width: 100%;
   grid-column-gap: 0px;
