@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from myapp.views import index
-from myapp.views import mentor_registration, mentee_registration, signin_view, signup_view, edit_profile_view
+from myapp.views import mentor_registration, mentee_registration, signin_view, signup_view, demo_view, edit_profile_view
 from apps.clubs import views
 from apps.clubs.views import profile_view
 from apps.clubs.views import chart_view
@@ -42,5 +42,6 @@ urlpatterns = [
     path('signout/', signout_view, name='signout'),
     path('data/', chart_view, name='charts'),
     path('mentors/', mentors_view, name='mentors'),
+    path('demo/', demo_view, name='demo'),
     path('profile/edit/', edit_profile_view, name='edit_profile'),
 ]

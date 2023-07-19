@@ -104,7 +104,6 @@ body{
   text-align: center;  
   font-size: 34px;
   text-decoration: none;
-  margin-right: 20px;
   margin-bottom: 20px;
   padding: 20px 50px;
   border-bottom: #999e9e solid 7px;
@@ -127,10 +126,18 @@ body{
     font-size: 26px;
     
   }
+  .home-rec{
+    display: flex;
+    flex-direction: column;
+  }
+  .home-rec>div{
+    width: 100%;
+    margin-bottom: 3px;
+  }
 }
 @media screen and (max-width: 870px){
   #button1 {
-    font-size: 20px;
+    font-size: 23px;
     padding: 7px 15px;
     border-bottom: #999e9e solid 3px;
     border-right: #999e9e solid 3px;
@@ -340,7 +347,6 @@ body{
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  margin-top: 50px;
   padding: 124px 24px 8px;
   display: flex;
 }

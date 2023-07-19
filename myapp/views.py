@@ -99,3 +99,6 @@ def index(request):
 
 def mentors_view(request):
     return render(request, 'mentors.html')
+
+def demo_view(request):
+    return render(request, 'demo.html')
