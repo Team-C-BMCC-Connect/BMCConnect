@@ -2,7 +2,7 @@ from django.http import JsonResponse
 from myapp.forms import MentorForm, MenteeForm
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
-from .forms import LoginForm, SignupForm
+from .forms import LoginForm, SignupForm, UserEditForm
 from .models import Mentee
 
 def signout_view(request):
@@ -84,6 +84,15 @@ def mentor_registration(request):
         form = MentorForm()
     
     return render(request, 'mentor_registration.html', {'form': form})
+def edit_profile_view(request):
+    if request.method == 'POST':
+        form = UserEditForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')  # Replace 'profile' with the name of your profile URL pattern
+    else:
+        form = UserEditForm(instance=request.user)
+    return render(request, 'edit_profile.html', {'form': form})
 
 def index(request):
     return render(request, 'home.html')

@@ -38,8 +38,10 @@ class Mentee(models.Model):
     last_name = models.CharField(max_length=100, verbose_name='Mentee Last Name')
     emplid = models.IntegerField(default=0, verbose_name='EmplID')
     major = models.CharField(max_length=100, verbose_name='Mentee Major')
-    preferred_language = models.CharField(max_length=100, verbose_name='Prefferred Language')
+    preferred_language = models.CharField(max_length=100, verbose_name='Preferred Language')
 
+    def __str__(self):
+        return f"{self.first_name} {self.last_name} - Mentee"
 
 class Mentor(models.Model):
     availability = models.CharField(max_length=255, blank=True)
@@ -58,7 +60,6 @@ class Mentor(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name} - Mentor"
-
 
 
 
