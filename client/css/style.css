@@ -26,14 +26,14 @@ body{
 
 .hero2{
   background-color: antiquewhite;
-  background-image: url("/static/mentor.jpg");
+  background-image: url("/static/mentors.png");
   overflow: hidden;
   justify-content: center;
   align-items: center;
   display: flex;
   width: 100%;
-  padding-top: 200px;
-  padding-bottom: 450px;
+  padding-top: 20px;
+  padding-bottom: 250px;
   background-repeat: no-repeat;
   background-size:cover;   
 }

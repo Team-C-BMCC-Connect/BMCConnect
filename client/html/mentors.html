@@ -31,7 +31,6 @@
                   <ul class="navbar-links">
                     <li class="navbar-item"><a class="navbar-link" href="{% url 'clubs-list' %}">Clubs</a></li>
                     <li class="navbar-item"><a class="navbar-link" href="{% url 'mentors' %}">Mentors</a></li>
-                    <li class="navbar-item"><a class="navbar-link" href="{% url 'charts' %}">Club Data</a></li>
                     <li class="navbar-item">
                       <a class="navbar-link" href="{% if user.is_authenticated %}{% url 'profile' %}{% else %}{% url 'signin' %}{% endif %}">
                         {% if user.is_authenticated %}
@@ -47,9 +46,10 @@
           </header>
     
     <div class="team-rectangles">
-      <div>
-    <div class="clubs_header_text"> Find Mentors! </div>
-    <div class="logo-wrapper"><img src="{% static 'mentors.png' %}" loading="lazy" ></div>
+      <div class="hero2">
+        <div class="imagecontainer">
+            <div class="bmcconnect2-0">Find Mentors!</div>
+        </div>
     </div>
       <a href="{% url 'mentor_registration' %}" id="button1">Become A Mentor</a>
       <a href="{% url 'mentee_registration' %}" id="button1">Become A Mentee</a>

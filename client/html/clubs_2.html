@@ -91,7 +91,6 @@
                 <ul class="navbar-links">
                   <li class="navbar-item"><a class="navbar-link" href="{% url 'clubs-list' %}">Clubs</a></li>
                   <li class="navbar-item"><a class="navbar-link" href="{% url 'mentors' %}">Mentors</a></li>
-                  <li class="navbar-item"><a class="navbar-link" href="{% url 'charts' %}">Club Data</a></li>
                   <li class="navbar-item">
                     <a class="navbar-link" href="{% if user.is_authenticated %}{% url 'profile' %}{% else %}{% url 'signin' %}{% endif %}">
                       {% if user.is_authenticated %}
@@ -145,6 +144,7 @@
     {% endfor %} 
     {% if user.is_staff %}
         <a href="{% url 'create_club' %}" id="button1">Create Club</a>
+        <a href="{% url 'charts' %}" id="button1">Club Data</a>
     {% endif %}
         <script>
            function joinClub(clubId) {

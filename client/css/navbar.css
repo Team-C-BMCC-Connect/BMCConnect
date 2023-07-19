@@ -76,8 +76,8 @@ body {
 .navbar-logo {
     background-color: var(--navbar-text-color-focus);
     border-radius: 50%;
-    width: 35px;
-    height: 30px;
+    width: 47px;
+    height: 37px;
     margin-right: 0.2em;
 }
 
@@ -181,6 +181,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    white-space: nowrap;
+    justify-content: space-between;
 }
 
 #navbar.opened .navbar-links {
@@ -252,4 +254,12 @@ body {
         width: 100%;
         height: 100%;
     }
+}
+
+.ibm-row-form{
+    display: flex;
+    flex-direction: column;
+}
+.ibm-row-form input{
+    margin-top:0.5em;
 }
