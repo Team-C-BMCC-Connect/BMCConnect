@@ -110,6 +110,7 @@ body{
   border-bottom: #999e9e solid 7px;
   border-right: #999e9e solid 7px;
   overflow: hidden;
+  white-space: nowrap;
 }
 
 #button1:hover{
@@ -119,6 +120,23 @@ body{
   padding-right: 52px;
   border-bottom: #4f5151 solid 6px;
   border-right: #4f5151 solid 5px;
+}
+@media screen and (max-width: 870px){
+  #button1 {
+    font-size: 20px;
+    margin-right: 2px;
+    margin-bottom: 2px;
+    padding: 7px 15px;
+    border-bottom: #999e9e solid 3px;
+    border-right: #999e9e solid 3px;
+    
+  }
+  #button1:hover{
+    padding-bottom: 8px;
+    padding-right: 16px;
+    border-bottom: #4f5151 solid 2px;
+    border-right: #4f5151 solid 2px;
+  }
 }
 
 .navbar-link {

@@ -72,6 +72,7 @@ body{
 }
 
 .sub_body_rectangle{
+  padding: 0% 2.5%;
   width: 49%;
   background-color: rgba(0, 65, 150, 1) ;
   border-radius: 20px; 
