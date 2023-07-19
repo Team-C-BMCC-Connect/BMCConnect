@@ -23,3 +23,6 @@ $RECYCLE.BIN/
 .history/
 .idea/
 *.code-workspace
+
+#db
+db.sqlite3
