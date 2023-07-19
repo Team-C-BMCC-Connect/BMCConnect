@@ -111,17 +111,3 @@ def matchmaking_view(request):
 
 
 
-# def pick_mentor(request, club_id):
-#     club = get_object_or_404(Club, id=club_id)
-#     user = request.user
-#     if club in user.clubs.all():
-#         user.clubs.remove(club)
-#         joined = False
-#     else:
-#         user.clubs.add(club)
-#         joined = True
-
-#     data = {
-#         'joined': joined
-#     }
-
