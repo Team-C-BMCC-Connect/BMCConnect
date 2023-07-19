@@ -8,6 +8,7 @@
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <meta content="Webflow" name="generator">
+    <link rel="stylesheet"  href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"/>
     <link href="{% static 'lisandros-stunning-site-01bdb5.webflow.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'webflow.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'lisandros-stunning-site-01bdb5.webflow.css' %}" rel="stylesheet" type="text/css">
@@ -66,9 +67,10 @@
                     <a>Services</a>
                 </div>
                 <div class="buttonsrectangle">
-                  <a href="{% url 'mentor_registration' %}" id="button1">Become A Mentor</a>
-                  <a href="{% url 'mentee_registration' %}" id="button1">Become A Mentee</a>
-                  <a href="{% url 'clubs-list' %}" id="button1">Join A Club</a>
+                  <a href="{% url 'mentor_registration' %}" id="button1">BECOME A MENTOR</a>
+                  <a href="{% url 'mentee_registration' %}" id="button1">BECOME A MENTEE</a>
+                  <a href="{% url 'clubs-list' %}" id="button1">JOIN A CLUB</a>
+                  <a href="{% url 'clubs-list' %}" id="button1">DEMO</a>
                 </div>
             </div>
         </div>
@@ -76,8 +78,8 @@
             <div class="columns-2">
                 <div class="small-columns">
                     <div class="column">
-                        <div class="content">
-                            <div class="text-5">Developers</div>
+                        <div>
+                            <h3>Developers</h3>
                             <div class="footer-links">
                                 <img src="{% static 'sandropfp.jpeg' %}" alt="Profile Picture" class="profile-picture">
                                 <div class="footertext">Sandro Tskitishvili</div>
@@ -103,8 +105,8 @@
                         </div>
                     </div>
                     <div class="column">
-                        <div class="content">
-                            <div class="text-5">Mentors</div>
+                        <div>
+                            <h3>Mentors</h3>
                             <div class="footer-links">
                                 <img src="{% static 'azhar.png' %}" alt="Profile Picture" class="profile-picture">
                                 <div class="footertext">Dr. Mohammad Azhar</div>                     
@@ -114,27 +116,21 @@
                         </div>
                     </div>
                     <div class="column">
-                        <div class="content">
-                            <div class="text-5">Special Thanks To</div>
+                        <div>
+                            <h3>Special Thanks To</h3>
                             <div class="footer-links"> 
-                                <div class="footertext">Sam Karasik</div>              
-                                <div class="alldevs">  
-                                    <a target="_blank" href="https://www.linkedin.com/in/sam-karasik">
-                                        <i class="fab fa-linkedin-in"></i>
-                                    </a>
-                                </div> 
-                                <div class="footertext">Benjamin Jenney</div>
-                                <div class="alldevs">
-                                    <a target="_blank" href="https://www.linkedin.com/in/benjamin-jenney">
-                                        <i class="fab fa-linkedin-in"></i>
-                                    </a>
-                                </div>
+                                <div class="footertext">Sam Karasik <a target="_blank" href="https://www.linkedin.com/in/sam-karasik-80209222/">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a></div>              
+                                <div class="footertext">Benjamin Jenney <a target="_blank" href="https://www.linkedin.com/in/benjamin-ezra-jenney-8b836320a/">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a></div>
                             </div>
                         </div>
                     </div>
                     <div class="column">
-                        <div class="content">
-                            <div class="text-5">Resources</div>
+                        <div>
+                            <h3>Resources</h3>
                             <div class="footer-links">
                                 <div>
                                     <a target="_blank" href="https://www.bmcc.cuny.edu/student-affairs/student-activities/clubs/">
