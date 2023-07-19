@@ -53,6 +53,9 @@
     </div>
       <a href="{% url 'mentor_registration' %}" id="button1">Become A Mentor</a>
       <a href="{% url 'mentee_registration' %}" id="button1">Become A Mentee</a>
+      {% if user.is_mentee or user.is_mentor %}
+      <a href="{% url 'matchmaking' %}" id="button1">Match</a>
+      {%endif%}
     </div>
     <div class="footer">
         <div class="footer">

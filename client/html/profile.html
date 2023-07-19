@@ -3,7 +3,14 @@
 {% block content %}
 <div class="profile-header">
     <img class="profile-image" src="{% static 'pfp.jpg' %}" alt="profile-picture">
-  <h2>{{ user.username }}</h2>
+  <div><h2>{{ user.username }}</h2>
+
+  {% if user.is_mentor %}
+        <h5>Mentor</h5>
+    {% elif user.is_mentee %}
+        <h5>Mentee</h5>
+    {% endif %}
+  </div>
 </div>
   
   <div class="profile-body">

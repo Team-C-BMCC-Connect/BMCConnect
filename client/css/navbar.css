@@ -272,12 +272,15 @@ body {
     color: white;
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     width: 100%;
   }
-  
+  .profile-header img{
+    margin-right: 20px;
+  }
   .profile-header h2 {
     font-size: 24px;
-    margin-left: 10px;
+    margin-bottom: 0;
   }
   
   .profile-image {

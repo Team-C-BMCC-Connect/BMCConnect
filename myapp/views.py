@@ -1,9 +1,11 @@
 from django.http import JsonResponse
-from myapp.forms import MentorForm, MenteeForm
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
-from .forms import LoginForm, SignupForm, UserEditForm
-from .models import Mentee
+from .forms import LoginForm, SignupForm, UserEditForm, UserMentor, UserMentee
+from .models import Mentee, Mentor
+from .matching import match_mentors_with_mentees
+
+
 
 def signout_view(request):
     logout(request)
@@ -34,56 +36,37 @@ def signup_view(request):
     return render(request, 'signup.html', {'form': form})
 
 def mentor_registration(request):
+    user = request.user
+    mentor = Mentor.objects.filter(user=user).first()
+
     if request.method == 'POST':
-        form = MentorForm(request.POST)
+        form = UserMentor(request.POST, instance=user)
         if form.is_valid():
-            # Process the form data for mentors
-            # ...
-            return JsonResponse({'success': True})
-        else:
-            # Return the form errors in JSON format
-            return JsonResponse({'success': False, 'errors': form.errors})
+            mentor = form.save(commit=False)
+            mentor.is_mentor = True
+            mentor.save()
+            return redirect('matchmaking')  # Replace 'matchmaking' with the appropriate URL name for the matchmaking view
     else:
-            form = MentorForm()
+        form = UserMentor(instance=user)
+
     return render(request, 'mentor_registration.html', {'form': form})
 
 def mentee_registration(request):
+    user = request.user
+    mentee = Mentee.objects.filter(user=user).first()
+
     if request.method == 'POST':
-        form = MenteeForm(request.POST)
+        form = UserMentee(request.POST, instance=user)
         if form.is_valid():
-            mentee = Mentee(
-                email=form.cleaned_data['email'],
-                first_name=form.cleaned_data['first_name'],
-                last_name=form.cleaned_data['last_name'],
-                emplid=form.cleaned_data['emplid'],
-                major=form.cleaned_data['major'],
-                preferred_language=form.cleaned_data['preferred_language']
-            )
+            mentee = form.save(commit=False)
+            mentee.is_mentee = True
             mentee.save()
-            # ...
-            return JsonResponse({'success': True})
-        else:
-            # Return the form errors in JSON format
-            return JsonResponse({'success': False, 'errors': form.errors})
+            return redirect('matchmaking')  # Replace 'matchmaking' with the appropriate URL name for the matchmaking view
     else:
-        form = MenteeForm()
-    
+        form = UserMentee(instance=user)
+
     return render(request, 'mentee_registration.html', {'form': form})
 
-def mentor_registration(request):
-    if request.method == 'POST':
-        form = MentorForm(request.POST)
-        if form.is_valid():
-            mentor = form.save(commit=False)
-            mentor.save()  
-            return JsonResponse({'success': True})
-        else:
-            # Return the form errors in JSON format
-            return JsonResponse({'success': False, 'errors': form.errors})
-    else:
-        form = MentorForm()
-    
-    return render(request, 'mentor_registration.html', {'form': form})
 def edit_profile_view(request):
     if request.method == 'POST':
         form = UserEditForm(request.POST, instance=request.user)
@@ -102,3 +85,43 @@ def mentors_view(request):
 
 def demo_view(request):
     return render(request, 'demo.html')
+
+
+def mentors_list_view(request):
+    mentors = Mentor.objects.all()
+    context = {'mentors': mentors}
+    return render(request, 'mentors_list.html', context)
+
+def mentees_list_view(request):
+    mentees = Mentee.objects.all()
+    context = {'mentees': mentees}
+    return render(request, 'mentees_list.html', context)
+def matchmaking_view(request):
+    user = request.user
+    mentors = Mentor.objects.all()
+    mentees = Mentee.objects.all()
+
+    context = {
+        'user': user,
+        'mentors': mentors,
+        'mentees': mentees
+    }
+
+    return render(request, 'matchmaking.html', context)
+
+
+
+# def pick_mentor(request, club_id):
+#     club = get_object_or_404(Club, id=club_id)
+#     user = request.user
+#     if club in user.clubs.all():
+#         user.clubs.remove(club)
+#         joined = False
+#     else:
+#         user.clubs.add(club)
+#         joined = True
+
+#     data = {
+#         'joined': joined
+#     }
+
