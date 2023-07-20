@@ -354,3 +354,16 @@ body {
   a.navbar-button:hover {
     background-color: rgb(119, 176, 252);
   }
+
+  @media screen and (max-width: 991px) {
+    iframe {
+        width:577px;
+        height:293px;
+    }
+    @media screen and (max-width: 577px){
+        iframe {
+            width:477px;
+            height:273px;
+        }
+    }
+  }
