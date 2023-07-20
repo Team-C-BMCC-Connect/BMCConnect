@@ -36,6 +36,8 @@ def signup_view(request):
     return render(request, 'signup.html', {'form': form})
 
 def mentor_registration(request):
+    if not request.user.is_authenticated:
+        return redirect('/signin')
     user = request.user
     mentor = Mentor.objects.filter(user=user).first()
 
@@ -52,6 +54,8 @@ def mentor_registration(request):
     return render(request, 'mentor_registration.html', {'form': form})
 
 def mentee_registration(request):
+    if not request.user.is_authenticated:
+        return redirect('/signin')
     user = request.user
     mentee = Mentee.objects.filter(user=user).first()
 
@@ -104,7 +108,7 @@ def matchmaking_view(request):
     context = {
         'user': user,
         'mentors': mentors,
-        'mentees': mentees
+        'mentees': mentees,
     }
 
     return render(request, 'matchmaking.html', context)
