@@ -16,8 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from myapp.views import index, mentors_list_view, mentees_list_view
-from myapp.views import mentor_registration, mentee_registration, signin_view, signup_view, demo_view, edit_profile_view, matchmaking_view
+from myapp.views import index, demo_view, edit_profile_view, matchmaking_view
+from myapp.views import mentor_registration, mentee_registration, signin_view, signup_view
 from apps.clubs import views
 from apps.clubs.views import profile_view
 from apps.clubs.views import chart_view
@@ -45,6 +45,4 @@ urlpatterns = [
     path('demo/', demo_view, name='demo'),
     path('profile/edit/', edit_profile_view, name='edit_profile'),
     path('matchmaking/', matchmaking_view, name='matchmaking'),
-    path('mentors/', mentors_list_view, name='mentors_list'),
-    path('mentees/', mentees_list_view, name='mentees_list'),
 ]

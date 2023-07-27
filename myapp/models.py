@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.core.exceptions import ObjectDoesNotExist
 
 class CustomUser(AbstractUser):
     is_mentor = models.BooleanField(default=False)
@@ -25,7 +26,6 @@ class CustomUser(AbstractUser):
             self.emplid = ''
         super().save(*args, **kwargs)
     def is_mentor_or_mentee(self):
-
         return self.is_mentor or self.is_mentee
     
 class Mentee(models.Model):
@@ -39,9 +39,16 @@ class Mentee(models.Model):
 
     user = models.OneToOneField(CustomUser, default=None, null=True, on_delete=models.CASCADE, related_name='mentee')
 
+    def matching_points(self, mentor):
+        points = 0
+        if self.preferred_language == mentor.preferred_language:
+            points += 1
+        if self.major == mentor.major:
+            points += 1
+        return points
     def __str__(self):
         return f"{self.user.username} - Mentee"
-
+    
 class Mentor(models.Model):
     first_name = models.CharField(max_length=100, verbose_name='Mentor First Name')
     last_name = models.CharField(max_length=100, verbose_name='Mentor Last Name')
@@ -53,15 +60,15 @@ class Mentor(models.Model):
 
     user = models.OneToOneField(CustomUser, default=None, null=True, on_delete=models.CASCADE, related_name='mentor')
 
+
+    def matching_points(self, mentee):
+        points = 0
+        if mentee:
+            if self.user.major == mentee.major:
+                points += 2  # Increase the points for a major match
+            if self.user.preferred_language == mentee.preferred_language:
+                points += 1
+        return points
+    
     def __str__(self):
         return f"{self.user.username} - Mentor"
-
-
-class Match(models.Model):
-    mentor = models.ForeignKey('myapp.Mentor', on_delete=models.CASCADE, related_name='matches')
-    mentee = models.ForeignKey('myapp.Mentee', on_delete=models.CASCADE, related_name='matches')
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f"Mentor: {self.mentor}, Mentee: {self.mentee}"
-    

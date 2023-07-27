@@ -2,9 +2,9 @@ from django.http import JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from .forms import LoginForm, SignupForm, UserEditForm, UserMentor, UserMentee
-from .models import Mentee, Mentor
-from .matching import match_mentors_with_mentees
-
+from .models import Mentee, Mentor, CustomUser
+from operator import attrgetter
+from django.core.exceptions import ObjectDoesNotExist
 
 
 def signout_view(request):
@@ -45,7 +45,9 @@ def mentor_registration(request):
         form = UserMentor(request.POST, instance=user)
         if form.is_valid():
             mentor = form.save(commit=False)
+            mentor.is_mentee = False
             mentor.is_mentor = True
+
             mentor.save()
             return redirect('matchmaking')  # Replace 'matchmaking' with the appropriate URL name for the matchmaking view
     else:
@@ -64,6 +66,8 @@ def mentee_registration(request):
         if form.is_valid():
             mentee = form.save(commit=False)
             mentee.is_mentee = True
+            mentee.is_mentor = False
+
             mentee.save()
             return redirect('matchmaking')  # Replace 'matchmaking' with the appropriate URL name for the matchmaking view
     else:
@@ -91,27 +95,54 @@ def demo_view(request):
     return render(request, 'demo.html')
 
 
-def mentors_list_view(request):
-    mentors = Mentor.objects.all()
-    context = {'mentors': mentors}
-    return render(request, 'mentors_list.html', context)
 
-def mentees_list_view(request):
-    mentees = Mentee.objects.all()
-    context = {'mentees': mentees}
-    return render(request, 'mentees_list.html', context)
 def matchmaking_view(request):
     user = request.user
-    mentors = Mentor.objects.all()
-    mentees = Mentee.objects.all()
 
-    context = {
-        'user': user,
-        'mentors': mentors,
-        'mentees': mentees,
-    }
+    if user.is_mentee:
+        # If the current user is a mentee, fetch all users who are mentors (is_mentor=True)
+        mentors = CustomUser.objects.filter(is_mentor=True).exclude(id=user.id)
 
-    return render(request, 'matchmaking.html', context)
+        # Calculate matching points for each mentor
+        for mentor in mentors:
+            mentor.matching_points = calculate_matching_points(user, mentor)
 
+        # Sort mentors based on matching points in descending order
+        mentors = sorted(mentors, key=attrgetter('matching_points'), reverse=True)
 
+        context = {
+            'user': user,
+            'mentors': mentors,
+        }
+        return render(request, 'matchmaking.html', context)
 
+    elif user.is_mentor:
+        # If the current user is a mentor, fetch all users who are mentees (is_mentee=True)
+        mentees = CustomUser.objects.filter(is_mentee=True).exclude(id=user.id)
+
+        # Calculate matching points for each mentee
+        for mentee in mentees:
+            mentee.matching_points = calculate_matching_points(user, mentee)
+
+        # Sort mentees based on matching points in descending order
+        mentees = sorted(mentees, key=attrgetter('matching_points'), reverse=True)
+
+        context = {
+            'user': user,
+            'mentees': mentees,
+        }
+        return render(request, 'matchmaking.html', context)
+
+    # If the user is not a mentor or mentee, display an appropriate message or redirect as needed
+    return render(request, 'matchmaking_not_available.html')
+
+def calculate_matching_points(user, other_user):
+    # Implement your matching points logic here
+    # You can compare fields like major, preferred_language, availability, etc.
+    points = 0
+    if user.major == other_user.major:
+        points += 2
+    if user.preferred_language == other_user.preferred_language:
+        points += 1
+    # Add more criteria and calculate points accordingly
+    return points
