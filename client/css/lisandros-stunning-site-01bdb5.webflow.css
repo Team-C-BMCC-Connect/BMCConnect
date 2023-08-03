@@ -98,7 +98,7 @@ body{
 }
 #button1 {
   display: inline-block;
-  background-color: #000;
+  background-color: rgba(0, 65, 150, 1);
   text-decoration: none;
   color: #fff;
   text-align: center;  
@@ -113,8 +113,8 @@ body{
 }
 
 #button1:hover{
-  background-color: #fff;
-  color: #000;
+  background-color: rgba(255, 102, 0, 1);
+  color: rgba(0, 65, 150, 1);
   padding-bottom: 21px;
   padding-right: 52px;
   border-bottom: #4f5151 solid 6px;
